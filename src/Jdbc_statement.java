@@ -33,8 +33,34 @@ public class Jdbc_statement {
         //step 5 : Processing result
         String name=rs.getString("name");
 
-
         System.out.println("Name of student is : - "+name);
+        System.out.println();
+
+        //insert data into table
+        String insert="Insert into student values(4,'jay',40)";
+        st.execute(insert);
+
+        //delete from table
+        String delete = "Delete from student where rollno=4";
+        st.execute(delete);
+
+        //update data in table
+        String update="update student set marks=75 where rollno=3";
+        st.execute(update);
+
+        //getting all records from a table
+        String allrecords="select * from student";
+        ResultSet rs1=st.executeQuery(allrecords);
+        System.out.println("All records from a table:-");
+        while (rs1.next())
+        {
+            System.out.print(rs1.getString(1)+" - ");
+            System.out.print(rs1.getString(2)+" - ");
+            System.out.print(rs1.getString(3));
+            System.out.println();
+        }
+
+
 
         //step 6 : close the connection
         con.close();
